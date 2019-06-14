@@ -4,7 +4,7 @@
   "description": "login and register with passport js",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node app.js"
   },
   "author": "Me-ann Urgel",
   "license": "ISC",
