@@ -19,17 +19,14 @@ passport.deserializeUser((id, done) => {
 passport.use(
   new GoogleStrategy(
     {
-      callbackURL:
-        "/auth/google/redirect" ||
-        "https://loginappwithpassport.herokuapp.com/auth/google/redirect",
+      callbackURL: "/auth/google/redirect",
       clientID: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET
     },
     (accessToken, refreshToken, profile, done) => {
       //check if user exists in db
-      console.log("google profile:", profile);
+
       User.findOne({ email: profile.emails[0].value }).then(emailTaken => {
-        console.log("emailTaken:", emailTaken);
         if (emailTaken) {
           return done(null, false, {
             message: "That email address is already registered."
@@ -64,16 +61,14 @@ passport.use(
 passport.use(
   new FacebookStrategy(
     {
-      callbackURL:
-        "http://localhost:3000/auth/facebook/redirect" ||
-        "https://loginappwithpassport.herokuapp.com/auth/facebook/redirect",
+      callbackURL: "http://localhost:3000/auth/facebook/redirect",
       clientID: process.env.FACEBOOK_APP_ID,
       clientSecret: process.env.FACEBOOK_APP_SECRET,
       profileFields: ["id", "displayName", "photos", "emails"]
     },
     (accessToken, refreshToken, profile, done) => {
       //check if user exists in db
-      console.log("facebook profile:", profile);
+
       User.findOne({ email: profile.emails[0].value }).then(emailTaken => {
         if (emailTaken) {
           return done(null, false, {
@@ -83,7 +78,7 @@ passport.use(
           User.findOne({ facebookId: profile.id }).then(currentUser => {
             if (currentUser) {
               // found user in db
-              console.log("user is:", currentUser);
+
               done(null, currentUser);
             } else {
               // no user in db so create new one
@@ -94,7 +89,6 @@ passport.use(
               })
                 .save()
                 .then(newUser => {
-                  console.log("newUser created:", newUser);
                   done(null, newUser);
                 })
                 .catch(err => {
