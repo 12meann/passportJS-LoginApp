@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const expressLayouts = require("express-ejs-layouts");
 const flash = require("connect-flash");
 
-require("dotenv").config();
+// require("dotenv").config();
 
 const passport = require("passport");
 const passportConfig = require("./config/passportConfig");
