@@ -60,6 +60,14 @@ app.get("/", (req, res) => {
 app.use("/auth", require("./routes/users"));
 app.use("/profile", require("./routes/profile"));
 
+// serve static assets if in production
+
+if (process.env.NODE_ENV === "production") {
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "views", "layout.ejs"));
+  });
+}
+
 //set port
 const PORT = process.env.PORT || 3000;
 
