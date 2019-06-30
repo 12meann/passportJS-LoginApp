@@ -1,0 +1,38 @@
+ <% include ./partials/messages %>
+<div class="row">
+  <div class="col-md-6 m-auto">
+    <div class="card">
+      <div class="card-body">
+        <form class="form-signin container text-center" action="/forgot" method="POST">
+          <i class="fas fa-laptop-code fa-7x mb-3"></i>
+          <h1 class="h3 mb-3 font-weight-normal text-danger text-center">
+             Forgot your password?
+          </h1>
+          <p>Please enter your email address to reset your password.</p>
+          <div class="form-group mt-5">
+            <div class="input-group">
+              <label for="email" class="sr-only">Email Address</label>
+              <input
+                type="email"
+                id="email"
+                class="form-control"
+                placeholder="Email address"
+                name="email"
+                required
+                autofocus
+              />
+            </div>
+          </div>
+          
+
+          <button class="btn btn-lg btn-primary btn-block mb-3" type="submit">
+            Reset Password
+          </button>
+          
+          <a class="text-center" href="/auth/login">Go Back</a>
+         
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

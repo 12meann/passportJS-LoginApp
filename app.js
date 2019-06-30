@@ -43,7 +43,10 @@ app.use((req, res, next) => {
 
 //connect db
 mongoose
-  .connect(process.env.MONGO_URI, { useNewUrlParser: true })
+  .connect(process.env.MONGO_URI, {
+    useNewUrlParser: true,
+    useCreateIndex: true
+  })
   .then(() => {
     console.log("Mongodb connected");
   })
@@ -58,6 +61,7 @@ app.get("/", (req, res) => {
 
 //routes
 app.use("/auth", require("./routes/users"));
+app.use("/forgot", require("./routes/forgot"));
 app.use("/profile", require("./routes/profile"));
 
 //set port
